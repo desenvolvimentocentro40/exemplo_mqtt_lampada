@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Imersão 5g - Senai</title>
+	<link rel="stylesheet" href="..\globalStyles.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="topo">
+        <a href="\">voltar</a>
+        <div class="titulo">
+            <h1>Módulo Lâmpada</h1>
+            <span id="txttopico"></span>
+        </div>
+        <div id="led" class="led led_desconectado"></div>
+    </div>
+    <div class="lampadaArea">
+        <img src="..\imgs\lampada_off.png" title="Lâmpada" id="lampada"/>
+        <span id="txttopico"></span>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>
