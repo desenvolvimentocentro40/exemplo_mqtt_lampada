@@ -1,6 +1,7 @@
 const led=document.getElementById("led")
 const txttopico=document.getElementById("txttopico")
 const topico="SenaiCentro4.0Contagem/2025/lampada"
+const reload=document.getElementById("reload")
 
 txttopico.innerHTML=`Tópico: ${topico}`
 
@@ -13,6 +14,7 @@ const CLIENT_ID = "exmploLampada_" + parseInt(Math.random() * 10000)
 let client = new Paho.MQTT.Client(BROKER_HOST, BROKER_PORT, CLIENT_ID)
 
 function conectarMQTT(){
+    reload.classList.add("animaIconReconnect")
     const connectOptions = {
         useSSL: true,
         userName: BROKER_USER,
@@ -22,7 +24,7 @@ function conectarMQTT(){
         timeout: 5
     }
     desconectarMQTT()
-    client.connect(connectOptions);
+    client.connect(connectOptions)
     led.classList.remove("led_desconectado")
     led.classList.remove("led_erro")
     led.classList.remove("led_conectado")
@@ -31,6 +33,7 @@ function conectarMQTT(){
 
 const desconectarMQTT=()=>{
     if (client && client.isConnected && client.isConnected()) {
+        reload.classList.remove("animaIconReconnect")
         client.disconnect()
         led.classList.remove("led_erro")
         led.classList.remove("led_conectado")
@@ -40,6 +43,7 @@ const desconectarMQTT=()=>{
 }
 
 function onConnect(){
+    reload.classList.remove("animaIconReconnect")
     led.classList.remove("led_erro")
     led.classList.remove("led_conectando")
     led.classList.remove("led_desconectado")
@@ -67,6 +71,11 @@ function publish(msg){
     const pahoMessage = new Paho.MQTT.Message(msg);
     pahoMessage.destinationName = topico;
     client.send(pahoMessage);
+}
+
+function reconectar(){
+    desconectarMQTT()
+    conectarMQTT()
 }
 
 client.onConnectionLost = onConnectionLost;
