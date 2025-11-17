@@ -14,7 +14,10 @@
             <h1>Módulo Controles</h1>
             <span id="txttopico"></span>
         </div>
-        <div id="led" class="led led_desconectado"></div>
+        <div class="connectInfo">
+            <div id="led" class="led led_desconectado"></div>
+            <img src="../imgs/reload.svg" id="reload" alt="Reconnect" title="Reconectar" class="logo" onclick="reconectar()">
+        </div>
     </div>
     <div class="controlesArea">
         <button onclick="publish('1')">ligar = 1</button>
